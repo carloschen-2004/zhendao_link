@@ -5,11 +5,13 @@
 ## 功能特点
 
 ### 🎫 票型支持
+
 - **成人票 [Adult]**: $38.8
 - **青少年票 [Nonage] (6-17岁)**: $19.9
 - **老年票 [Elderly] (60-69岁)**: $26.6
 
 ### ✨ 交互功能
+
 - 实时数量调整（加减按钮）
 - 动态总金额计算
 - 购物车添加功能
@@ -17,6 +19,7 @@
 - 鼠标悬停效果
 
 ### 🎨 设计特点
+
 - 响应式布局（移动端/桌面端自适应）
 - 现代化界面设计
 - 圆角元素
@@ -37,6 +40,7 @@
 ## 本地运行
 
 1. 克隆仓库
+
 ```bash
 git clone https://github.com/carloschen-2004/zhendao_link.git
 ```
@@ -44,9 +48,11 @@ git clone https://github.com/carloschen-2004/zhendao_link.git
 2. 打开 `index.html` 文件
    - 直接双击打开
    - 或使用本地服务器：
+
      ```bash
      python3 -m http.server 8000
      ```
+
      然后访问 `http://localhost:8000`
 
 ## 项目结构
@@ -65,5 +71,5 @@ MIT License
 
 ---
 
-**开发时间**: 2025年3月10日  
+**开发时间**: 2025年3月10日
 **开发者**: carloschen-2004
