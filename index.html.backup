@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wudang Mountain Ticket</title>
+    <!-- 引入Font Awesome图标 -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            width: 100%;
+            min-height: 100vh;
+            background-color: #ffffff;
+            padding: 8vw 8vw;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 3vw;
+            background-color: #ffffff;
+        }
+
+        /* 左侧图片区 */
+        .image-section {
+            width: 100%;
+            flex: 1;
+            min-height: 300px;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border: none;
+            border-radius: 8px;
+            display: block;
+            transform: scale(1.5);
+        }
+
+        /* 右侧票务信息区 */
+        .info-section {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 平板及以上：增加右侧内容左边距 */
+        @media (min-width: 768px) {
+            .info-section {
+                padding-left: 120px;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .info-section {
+                padding-left: 160px;
+            }
+        }
+
+        @media (min-width: 1920px) {
+            .info-section {
+                padding-left: 200px;
+            }
+        }
+
+        /* 标题部分 */
+        .title-section {
+            margin-bottom: 16px;
+        }
+
+        .title-section h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 18px;
+        }
+
+        .title-section .subtitle {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .title-section .time-info {
+            font-size: 20px;
+            color: #666666;
+        }
+
+        /* 票型选择部分 */
+        .ticket-types {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .ticket-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .ticket-label {
+            width: 112px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #999999;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000000;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .ticket-label:hover {
+            border-color: #FF6600;
+            color: #FF6600;
+        }
+
+        .ticket-label.wide {
+            width: 200px;
+        }
+
+        .ticket-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        /* 数量选择器 */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000000;
+            border-radius: 6px;
+            background-color: #f3f4f6;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            color: #000000;
+        }
+
+        .quantity-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .quantity-input {
+            width: 40px;
+            height: 28px;
+            text-align: center;
+            border: 1px solid #000000;
+            border-radius: 6px;
+            background-color: #f3f4f6;
+            font-size: 14px;
+            color: #000000;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+            background-color: #e5e7eb;
+        }
+
+        /* 底部按钮部分 */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .action-btn {
+            padding: 16px;
+            width: 190px;
+            height: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .total-display {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 20px;
+        }
+
+        .total-label {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .total-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF6600;
+        }
+
+        .btn-cart {
+            background-color: #FFC107;
+        }
+
+        .btn-cart:hover {
+            background-color: #e5a800;
+        }
+
+        .btn-purchase {
+            background-color: #FF6600;
+        }
+
+        .btn-purchase:hover {
+            background-color: #e65c00;
+        }
+
+        /* 平板及以上 (768px+) */
+        @media (min-width: 768px) {
+            body {
+                padding: 3vh 5vh 4vh 6vh;
+            }
+
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .image-section {
+                width: clamp(150px, 15vw, 280px);
+                height: 50vh;
+                margin-top: 20px;
+            }
+
+            .info-section {
+                flex: 1;
+                margin-top: 0;
+            }
+
+            .title-section h1 {
+                font-size: clamp(20px, 2vw, 28px);
+            }
+        }
+
+        /* 桌面显示器 (1024px+) */
+        @media (min-width: 1024px) {
+            .image-section {
+                width: clamp(180px, 13vw, 320px);
+                height: 55vh;
+            }
+        }
+
+        /* 大屏幕 (1440px+) */
+        @media (min-width: 1440px) {
+            body {
+                padding: 3vh 6vh 4vh 7vh;
+            }
+
+            .image-section {
+                width: clamp(200px, 12vw, 350px);
+                height: 60vh;
+            }
+        }
+
+        /* 超大屏幕 (1920px+) */
+        @media (min-width: 1920px) {
+            body {
+                padding: 4vh 8vh 5vh 10vh;
+            }
+
+            .image-section {
+                width: clamp(220px, 10vw, 400px);
+                height: 65vh;
+            }
+
+            .title-section h1 {
+                font-size: clamp(24px, 2vw, 32px);
+            }
+        }
+
+        /* 4K 屏幕 (2560px+) */
+        @media (min-width: 2560px) {
+            .container {
+                gap: 4vw;
+            }
+
+            .image-section {
+                width: clamp(250px, 8vw, 450px);
+                height: 70vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 左侧图片区 -->
+        <div class="image-section">
+            <img src="./imgs/111.jpg" alt="img">
+        </div>
+
+        <!-- 右侧票务信息区 -->
+        <div class="info-section">
+            <!-- 标题部分 -->
+            <div class="title-section">
+                <h1>Wudang Mountain Scenic Area Ticket 5A</h1>
+                <p class="subtitle">Ticket Only</p>
+                <p class="subtitle">(Timed Entry Available 7:30-11:30, 11:30-16:00)</p>
+            </div>
+
+            <!-- 票型选择部分 -->
+            <div class="ticket-types">
+                <!-- 成人票 -->
+                <div class="ticket-row">
+                    <div class="ticket-label wide">Adult</div>
+                    <div class="ticket-price">$38.8</div>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn decrement">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input type="number" class="quantity-input" value="1" min="0">
+                        <button class="quantity-btn increment">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 青少年票 -->
+                <div class="ticket-row">
+                    <div class="ticket-label wide">Nonage (6-17)</div>
+                    <div class="ticket-price">$19.9</div>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn decrement">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input type="number" class="quantity-input" value="0" min="0">
+                        <button class="quantity-btn increment">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 老年票 -->
+                <div class="ticket-row">
+                    <div class="ticket-label wide">Elderly (60-69)</div>
+                    <div class="ticket-price">$26.6</div>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn decrement">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input type="number" class="quantity-input" value="0" min="0">
+                        <button class="quantity-btn increment">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部按钮部分 -->
+            <div class="action-buttons">
+                <button class="action-btn btn-cart">Add to chart</button>
+                <button class="action-btn btn-purchase">Purchase</button>
+                <div class="total-display">
+                    <span class="total-label">Total:</span>
+                    <span class="total-amount" id="totalAmount">$0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 交互逻辑JS -->
+    <script>
+        // 数量加减逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            // 减号按钮点击事件
+            document.querySelectorAll('.decrement').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const input = this.nextElementSibling;
+                    let value = parseInt(input.value);
+                    if (value > 0) {
+                        input.value = value - 1;
+                    }
+                    updateTotal();
+                });
+            });
+
+            // 加号按钮点击事件
+            document.querySelectorAll('.increment').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    let value = parseInt(input.value);
+                    input.value = value + 1;
+                    updateTotal();
+                });
+            });
+
+            // 限制输入框只能输入数字且最小值为0
+            document.querySelectorAll('input[type="number"]').forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value < 0 || isNaN(this.value)) {
+                        this.value = 0;
+                    }
+                    updateTotal();
+                });
+            });
+
+            // 计算总金额
+            function updateTotal() {
+                const prices = {
+                    adult: 38.8,
+                    nonage: 19.9,
+                    elderly: 26.6
+                };
+
+                const inputs = document.querySelectorAll('.quantity-input');
+                const adultQty = parseInt(inputs[0].value) || 0;
+                const nonageQty = parseInt(inputs[1].value) || 0;
+                const elderlyQty = parseInt(inputs[2].value) || 0;
+
+                const total = (prices.adult * adultQty) +
+                             (prices.nonage * nonageQty) +
+                             (prices.elderly * elderlyQty);
+
+                document.getElementById('totalAmount').textContent = '$' + total.toFixed(2);
+            }
+
+            // 初始化总金额
+            updateTotal();
+
+            // Add to chart 按钮点击事件
+            document.querySelector('.btn-cart').addEventListener('click', function() {
+                alert('Added to cart!');
+            });
+
+            // Purchase 按钮点击事件
+            document.querySelector('.btn-purchase').addEventListener('click', function() {
+                alert('Redirecting to the payment page ...');
+            });
+        });
+    </script>
+</body>
+</html>

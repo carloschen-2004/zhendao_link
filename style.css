@@ -1,0 +1,307 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            width: 100%;
+            min-height: 100vh;
+            background-color: #ffffff;
+            padding: 8vw 8vw;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 3vw;
+            background-color: #ffffff;
+        }
+
+        /* 左侧图片区 */
+        .image-section {
+            width: 100%;
+            flex: 1;
+            min-height: 300px;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border: none;
+            border-radius: 8px;
+            display: block;
+            transform: scale(1.5);
+        }
+
+        /* 右侧票务信息区 */
+        .info-section {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 平板及以上：增加右侧内容左边距 */
+        @media (min-width: 768px) {
+            .info-section {
+                padding-left: 120px;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .info-section {
+                padding-left: 160px;
+            }
+        }
+
+        @media (min-width: 1920px) {
+            .info-section {
+                padding-left: 200px;
+            }
+        }
+
+        /* 标题部分 */
+        .title-section {
+            margin-bottom: 16px;
+        }
+
+        .title-section h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 18px;
+        }
+
+        .title-section .subtitle {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .title-section .time-info {
+            font-size: 20px;
+            color: #666666;
+        }
+
+        /* 票型选择部分 */
+        .ticket-types {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .ticket-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .ticket-label {
+            width: 112px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #999999;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000000;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .ticket-label:hover {
+            border-color: #FF6600;
+            color: #FF6600;
+        }
+
+        .ticket-label.wide {
+            width: 200px;
+        }
+
+        .ticket-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        /* 数量选择器 */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000000;
+            border-radius: 6px;
+            background-color: #f3f4f6;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            color: #000000;
+        }
+
+        .quantity-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .quantity-input {
+            width: 40px;
+            height: 28px;
+            text-align: center;
+            border: 1px solid #000000;
+            border-radius: 6px;
+            background-color: #f3f4f6;
+            font-size: 14px;
+            color: #000000;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+            background-color: #e5e7eb;
+        }
+
+        /* 底部按钮部分 */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .action-btn {
+            padding: 16px;
+            width: 190px;
+            height: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .total-display {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 20px;
+        }
+
+        .total-label {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .total-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF6600;
+        }
+
+        .btn-cart {
+            background-color: #FFC107;
+        }
+
+        .btn-cart:hover {
+            background-color: #e5a800;
+        }
+
+        .btn-purchase {
+            background-color: #FF6600;
+        }
+
+        .btn-purchase:hover {
+            background-color: #e65c00;
+        }
+
+        /* 平板及以上 (768px+) */
+        @media (min-width: 768px) {
+            body {
+                padding: 3vh 5vh 4vh 6vh;
+            }
+
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .image-section {
+                width: clamp(150px, 15vw, 280px);
+                height: 50vh;
+                margin-top: 20px;
+            }
+
+            .info-section {
+                flex: 1;
+                margin-top: 0;
+            }
+
+            .title-section h1 {
+                font-size: clamp(20px, 2vw, 28px);
+            }
+        }
+
+        /* 桌面显示器 (1024px+) */
+        @media (min-width: 1024px) {
+            .image-section {
+                width: clamp(180px, 13vw, 320px);
+                height: 55vh;
+            }
+        }
+
+        /* 大屏幕 (1440px+) */
+        @media (min-width: 1440px) {
+            body {
+                padding: 3vh 6vh 4vh 7vh;
+            }
+
+            .image-section {
+                width: clamp(200px, 12vw, 350px);
+                height: 60vh;
+            }
+        }
+
+        /* 超大屏幕 (1920px+) */
+        @media (min-width: 1920px) {
+            body {
+                padding: 4vh 8vh 5vh 10vh;
+            }
+
+            .image-section {
+                width: clamp(220px, 10vw, 400px);
+                height: 65vh;
+            }
+
+            .title-section h1 {
+                font-size: clamp(24px, 2vw, 32px);
+            }
+        }
+
+        /* 4K 屏幕 (2560px+) */
+        @media (min-width: 2560px) {
+            .container {
+                gap: 4vw;
+            }
+
+            .image-section {
+                width: clamp(250px, 8vw, 450px);
+                height: 70vh;
+            }
+        }
